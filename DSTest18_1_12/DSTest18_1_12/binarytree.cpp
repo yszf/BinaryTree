@@ -13,7 +13,7 @@ void MakeTree(BTNode **ptr)
 	*ptr = NULL;
 }
 
-//锟斤拷锟斤拷锟斤拷锟斤拷
+//购买结点
 BTNode * BuyNode()
 {
 	BTNode* node = (BTNode*)malloc(sizeof(BTNode));
@@ -33,7 +33,7 @@ void FreeNode(BTNode *ptr)
 	free(ptr);
 }
 
-//锟斤拷锟斤拷锟斤拷锟斤拷元锟斤拷
+//中序查找元素
 BTNode * FindIs(BTNode *ptr, Elem_Type x)
 {
 	if (ptr == NULL || ptr->data == x)
@@ -154,7 +154,7 @@ BTNode * CreatePI(const Elem_Type *ps, const Elem_Type *is, int n)
 	return s;
 }
 
-//锟斤拷锟斤拷前锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟叫达拷锟斤拷锟斤拷锟斤拷锟斤拷
+//根据前序和中序序列创建二叉树
 BTNode * CreateTreePI(const Elem_Type *ps, const Elem_Type *is, int n)
 {
 	if (ps == NULL || is == NULL || n < 1)
@@ -182,7 +182,7 @@ BTNode * CreateIL(const Elem_Type *is, const Elem_Type *ls, int n)
 	return s;
 }
 
-//锟斤拷锟斤拷锟斤拷锟斤拷锟酵猴拷锟斤拷锟斤拷锟叫达拷锟斤拷锟斤拷锟斤拷锟斤拷
+//根据中序和后序序列创建二叉树
 BTNode * CreateTreeIL(const Elem_Type *is, const Elem_Type *ls, int n)
 {
 	if (is == NULL || ls == NULL || n < 1)
@@ -192,7 +192,7 @@ BTNode * CreateTreeIL(const Elem_Type *is, const Elem_Type *ls, int n)
 	return CreateIL(is, ls, n);
 }
 
-//前锟斤拷锟斤拷锟斤拷
+//前序遍历
 void PreOrder(BTNode *ptr)
 {
 	if (ptr != NULL)
@@ -203,7 +203,7 @@ void PreOrder(BTNode *ptr)
 	}
 }
 
-//锟捷癸拷锟斤拷锟斤拷锟斤拷锟斤拷
+//递归中序遍历
 void InOrder(BTNode *ptr)
 {
 	if (ptr != NULL)
@@ -214,7 +214,7 @@ void InOrder(BTNode *ptr)
 	}
 }
 
-//锟捷癸拷锟斤拷锟斤拷锟斤拷锟斤拷
+//递归后续遍历
 void PastOrder(BTNode *ptr)
 {
 	if (ptr != NULL)
@@ -225,7 +225,7 @@ void PastOrder(BTNode *ptr)
 	}
 }
 
-//锟角递癸拷前锟斤拷锟斤拷锟斤拷
+//非递归前序遍历
 void NicePreOrder(BTNode *ptr)
 {
 	if (ptr == NULL)
@@ -261,7 +261,7 @@ void NicePreOrder(BTNode *ptr)
 	}
 }
 
-//锟角递癸拷锟斤拷锟斤拷锟斤拷锟斤拷
+//非递归中序遍历
 void NiceInOrder(BTNode *ptr)
 {
 	if (ptr == NULL)
@@ -297,7 +297,7 @@ void NiceInOrder(BTNode *ptr)
 	}
 }
 
-//锟角递癸拷锟斤拷锟斤拷锟斤拷锟斤拷
+//非递归后续遍历
 void NicePastOrder(BTNode *ptr)
 {
 	if (ptr == NULL)
@@ -358,10 +358,10 @@ void StkNiceInOrder(BTNode *ptr)
 				p = p->leftChild;
 				sta.push(p);
 			}
-			else//锟斤拷锟斤拷锟斤拷为锟秸ｏ拷锟斤拷印锟斤拷前锟斤拷锟斤拷
+			else//左孩子为空，打印当前结点
 			{
 				printf("%c", p->data);
-				//锟斤拷锟斤拷锟斤拷锟揭猴拷锟斤拷为锟秸ｏ拷锟斤拷直锟接达拷栈锟斤拷删锟斤拷锟斤拷前锟斤拷锟姐，锟斤拷锟斤拷tag锟斤拷为0
+				//如果左右孩子为空，则直接从栈中删除当前结点，并将tag置为0
 				if (p->rightChild == NULL)
 				{
 					p->tag = 0;
@@ -369,13 +369,13 @@ void StkNiceInOrder(BTNode *ptr)
 				}
 			}
 		}
-		else if (p->tag == 2)//tag为2锟斤拷示锟揭猴拷锟接斤拷锟姐还未锟斤拷锟斤拷
+		else if (p->tag == 2)//tag为2表示右孩子结点还未访问
 		{
-			//锟斤拷栈锟斤拷删锟斤拷锟斤拷锟秸碉拷前锟斤拷锟斤拷
+			//从栈中删除清空当前结点
 			p->tag = 0;
 			sta.pop();
 
-			if (p->leftChild != NULL)//锟斤拷前锟斤拷锟斤拷未锟斤拷锟斤拷印
+			if (p->leftChild != NULL)//当前结点未被打印
 			{
 				printf("%c", p->data);
 			}
@@ -425,7 +425,7 @@ void StkNiceInOrder2(BTNode *ptr)
 	}
 
 }
-//使锟斤拷stack锟斤拷锟节憋拷锟角憋拷锟斤拷实锟街非递癸拷锟斤拷锟斤拷
+//使用stack和在标记变量实现非递归遍历
 void StkNicePastOrder(BTNode *ptr)
 {
 	if (ptr == NULL)
@@ -535,7 +535,7 @@ BTNode * Parent(BTNode *ptr, BTNode *child)
 	}
 }
 
-//寻锟斤拷双锟阶斤拷锟斤拷
+//寻找双亲结点
 BTNode * FindParent(BTNode *ptr, BTNode *child)
 {
 	if (ptr == NULL || child == NULL || child == ptr)
@@ -548,7 +548,7 @@ BTNode * FindParent(BTNode *ptr, BTNode *child)
 	}
 }
 
-//寻锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷双锟斤拷
+//寻找两个结点的最近双亲
 BTNode * FindNearParent(BTNode *ptr, BTNode *child1, BTNode *child2)
 {
 	if (ptr == NULL || child1 == NULL || child2 == NULL)
@@ -559,31 +559,31 @@ BTNode * FindNearParent(BTNode *ptr, BTNode *child1, BTNode *child2)
 	{
 		return ptr;
 	}
-	//锟斤拷锟斤拷锟斤拷锟叫诧拷锟斤拷锟斤拷锟斤拷锟斤拷锟姐并锟斤拷锟截诧拷锟揭斤拷锟斤拷
+	//左子树中查找两个结点并返回查找结果
 	BTNode *pLeft = FindNearParent(ptr->leftChild, child1, child2);
-	//锟斤拷锟斤拷锟斤拷锟叫诧拷锟斤拷锟斤拷锟斤拷锟斤拷锟姐并锟斤拷锟截诧拷锟揭的斤拷锟斤拷
+	//右子树中查找两个结点并返回查找的结果
 	BTNode *pRight = FindNearParent(ptr->rightChild, child1, child2);
 
-	//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷没锟揭碉拷锟斤拷锟斤拷锟较讹拷锟斤拷锟斤拷锟斤拷锟姐都锟斤拷锟斤拷锟斤拷锟斤拷锟叫ｏ拷
-	//锟斤拷锟皆凤拷锟斤拷锟斤拷锟斤拷锟斤拷锟叫的诧拷询锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷要锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟侥诧拷询
-	//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟叫讹拷
+	//如果左子树中没找到，则断定两个结点都在右子树中，
+	//可以返回右子树中的查询结果，否则需要结合左右子树的查询
+	//结果并作出判断
 	if (pLeft == NULL)
 	{
 		return pRight;
 	}
 
-	//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷没锟揭碉拷锟斤拷锟斤拷锟较讹拷锟斤拷锟斤拷锟斤拷锟姐都锟斤拷锟斤拷锟斤拷锟斤拷锟叫ｏ拷锟斤拷锟斤拷
-	//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟侥诧拷询锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷要锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟侥诧拷询锟斤拷锟斤拷锟斤拷锟斤拷同锟叫讹拷
+	//如果右子树没找到，则断定两个结点都在左子树中，可以
+	//返回左子树的查询结果，否则需要结合左右子树的查询结果来共同判定
 	if (pRight == NULL)
 	{
 		return pLeft;
 	}
 
-	//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷锟叫讹拷锟揭碉拷锟斤拷锟斤拷锟斤拷锟斤拷之一锟斤拷锟斤拷ptr锟斤拷锟斤拷锟斤拷锟酵癸拷锟斤拷锟斤拷锟饺斤拷锟姐，锟斤拷锟截硷拷锟斤拷
+	//如果左右子树中都找到两个结点之一，则ptr就是最低公共祖先结点，返回即可
 	return ptr;
 }
 
-//锟角递癸拷锟斤拷锟斤拷锟斤拷锟斤拷
+//非递归层序遍历
 void NiceLevelOrder(BTNode *ptr)
 {
 	if (ptr == NULL)
@@ -611,7 +611,7 @@ void NiceLevelOrder(BTNode *ptr)
 	}
 }
 
-//锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷使锟斤拷锟斤拷锟斤拷
+//层序遍历，使用容器
 void LevelOrder(BTNode *ptr)
 {
 	if (ptr == NULL)
@@ -622,7 +622,7 @@ void LevelOrder(BTNode *ptr)
 	BTNode *p = ptr;
 	vec.push_back(p);
 
-	//锟斤拷锟脚碉拷前锟斤拷锟斤拷锟斤拷vector锟叫碉拷锟铰憋拷
+	//存放当前结点在vector中的下标
 	int cur = 0;
 	while (cur < vec.size())
 	{
@@ -652,7 +652,7 @@ void LevelOrder2(BTNode *ptr)
 		Print_K_Level(ptr, i);
 	}
 }
-//锟矫碉拷锟斤拷锟侥的高讹拷
+//得到树的的高度
 int BTDepth(BTNode *ptr)
 {
 	if (ptr == NULL)
@@ -680,7 +680,7 @@ int BTDepth(BTNode *ptr)
 	return left > right ? left + 1 : right + 1;
 }
 
-//锟矫碉拷锟斤拷锟叫斤拷锟斤拷锟侥革拷锟斤拷
+//得到树中结点的个数
 int Size(BTNode *ptr)
 {
 	if (ptr == NULL)
@@ -704,7 +704,7 @@ int Size2(BTNode *ptr)
 	return count;
 }
 
-//锟叫讹拷锟角凤拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
+//判断是否是满二叉树
 bool Is_Full_BinaryTree(BTNode *ptr)
 {
 	if (ptr == NULL)
@@ -718,7 +718,7 @@ bool Is_Full_BinaryTree(BTNode *ptr)
 	return (int)pow(2, depth) - 1 == size;
 }
 
-//锟叫讹拷锟角凤拷锟斤拷锟斤拷全锟斤拷锟斤拷锟斤拷
+//判断是否是完全二叉树
 bool Is_Comp_BinaryTree(BTNode *ptr)
 {
 	if (ptr == NULL)
@@ -729,8 +729,8 @@ bool Is_Comp_BinaryTree(BTNode *ptr)
 	BTNode *p = ptr;
 	que.push(p);
 
-	//锟叫断讹拷锟斤拷锟叫碉拷前锟斤拷锟斤拷锟斤拷锟斤拷一锟斤拷锟斤拷锟斤拷锟角凤拷锟斤拷双锟斤拷支锟斤拷锟姐，
-	//锟斤拷锟斤拷锟斤拷为false,锟斤拷锟斤拷锟斤拷锟斤拷为true
+	//判断队列中当前结点的上一个结点是否是双分支结点，
+	//若是则为false,若不是则为true
 	bool flag = false;
 	while (!que.empty())
 	{
@@ -768,7 +768,7 @@ bool Is_Comp_BinaryTree(BTNode *ptr)
 	return true;
 }
 
-//锟叫讹拷锟角凤拷锟斤拷平锟斤拷锟斤拷锟斤拷锟斤拷
+//判断是否是平衡二叉树
 bool Is_Balance_BinaryTree(BTNode *ptr)
 {
 	if (ptr == NULL)
